@@ -38,7 +38,8 @@ def make_files(dictionary_to_write: dict):
     """
 
     for key, value in dictionary_to_write.items():
-        pass
+        # TODO key is the name of the file
+        # TODO value is a list of strigs that should be written to a txt file
 
 
 if __name__ == '__main__':
