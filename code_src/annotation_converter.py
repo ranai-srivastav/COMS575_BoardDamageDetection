@@ -38,14 +38,20 @@ def make_files(dictionary_to_write: dict):
     """
 
     for key, value in dictionary_to_write.items():
-        # TODO key is the name of the file
-        # TODO value is a list of strigs that should be written to a txt file
+        # key is the name of the file
+        # value is the list of annotations
+
+        with open("labels/" + key[:-3] + ".tif", 'w+') as label_file:
+            for strings in value:
+                label_file.write(strings)
+        label_file.close()
+
 
 
 if __name__ == '__main__':
     ls = os.listdir()
     ls = [x for x in ls if (x[0] == 's' and x[1].isdigit())]
-    print(ls)
+    print(os.getcwd())
     annotation_write = dict()
 
     for folder in ls:
@@ -76,10 +82,12 @@ if __name__ == '__main__':
                 if image is not None:
                     img_resolution_x = image.shape[1]
                     img_resolution_y = image.shape[0]
+                    cv2.imwrite("images/" + file_name[:-4]+".tif", image)
                 else:
                     print(
                         f"*******[ERR]: 404 picture{path_to_img_folder + file_name[:-4]}.tif can't be found")
                     continue
+
 
                 # print(image.shape)
 
